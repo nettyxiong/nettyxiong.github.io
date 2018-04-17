@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centos6.5安装caffe(CPU模式+GPU模式) - 熊二狗的独立博客</title>
+    <meta name="author"  content="熊思">
+    <meta name="description" content="Centos6.5安装caffe(CPU模式+GPU模式)">
+    <meta name="keywords"  content="linux, caffe">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Centos6.5安装caffe(CPU模式+GPU模式) - 熊二狗的独立博客">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2016/01/12/Centos6.5%E5%AE%89%E8%A3%85caffe%E6%96%87%E6%A1%A3.html">
+    <meta property="og:description" content="昵称悟空，千禧一代，前端开发者/伪极客/灵魂摄影师，热爱技术&设计。很高兴能在这里与你分享我对技术和生活的思考。">
+    <meta property="og:site_name" content="熊二狗的独立博客">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-seaOfClouds bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#linux" class="post-tag">linux</a>
+          
+            <a href="http://localhost:4000/tags#caffe" class="post-tag">caffe</a>
+          
+        
+      </div>
+      <h1>Centos6.5安装caffe(CPU模式+GPU模式)</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">熊思</a></></span>
+        <time class="post-meta-item" datetime="16-01-12"><i class="iconfont icon-date"></i>12 Jan 2016</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h3 id="1安装centos65系统">1.安装Centos6.5系统</h3>
+<ul>
+  <li>连接网络，将锐捷文件夹<code class="highlighter-rouge">rj</code>拷贝到用户目录下
+    <blockquote>
+      <p>sh start-network.sh</p>
+    </blockquote>
+  </li>
+  <li>解决无法使用sudo的问题
+    <blockquote>
+      <p>visudoers</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>紧接着找到<code class="highlighter-rouge">root ALL=(ALL) ALL</code>这一行，在下一行添加<code class="highlighter-rouge">lei ALL=(ALL) ALL</code>，保存退出编辑，<code class="highlighter-rouge">：wq</code>即可</p>
+
+<h3 id="2基本依赖库的安装">2.基本依赖库的安装</h3>
+<ul>
+  <li>基本开发工具
+    <blockquote>
+      <p>sudo yum -y groupinstall “Development Tools” “Development Libraries”</p>
+    </blockquote>
+  </li>
+  <li>添加EPEL repositories
+    <blockquote>
+      <p>sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</p>
+    </blockquote>
+  </li>
+  <li>安装依赖库
+    <blockquote>
+      <p>sudo yum -y install protobuf-devel leveldb-devel snappy-devel hdf5-devel</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>安装boost-devel</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  #查看bosst是否已经安装
+  rpm -qa boost
+  #下载boost安装包
+  wget -c -O boost_1_55_0.tar.bz2 http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.bz2?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fboost%2Ffiles%2Fboost%2F1.55.0%2F&amp;ts=1385953406&amp;use_mirror=softlayer-ams
+  #解压文件
+  tar jxvf  boost_1_55_0.tar.bz2
+  #安装
+  cd boost_1_55_0
+  ./bootstrap.sh
+  ./b2 -j 32
+  sudo ./b2 install
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>安装opencv-devel</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  #安装依赖项
+  sudo yum -y install cmake pkgconfig gtk2-devel python-devel numpy tbb-devel libpng-devel
+  #下载安装包
+  wget -c http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.10/opencv-2.4.10.zip
+  #解压文件
+  unzip opencv-2.4.10.zip
+  #安装
+  cd opencv-2.4.10
+  mkdir build
+  cd build
+  cmake ../ -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_EXAMPLES=ON -DBUILD_NEW_PYTHON_SUPPORT=ON -DINSTALL_PYTHON_EXAMPLES=ON
+  make -j 32 #32代指CPU的核数
+  sudo make install
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>安装系统依赖库</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  sudo yum -y install gflags-devel lmdb-devel
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>安装glog-devel</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  wget -c -O glog.zip https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+  tar zxvf glog.zip
+  cd glog
+  ./configure
+  make -j 32
+  sudo make install
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>安装BLAS</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  yum install atlas-devel
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="3安装caffe">3.安装caffe</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	wget -c -O caffe.zip https://github.com/BVLC/caffe/archive/master.zip
+	$ cp Makefile.config.example Makefile.config
+	# Adjust Makefile.config (for example, if using Anaconda Python)
+	$ make all -j 32
+	$ make test
+	$ make runtest - makeall 出现如下错误 &gt; fatal error: caffe/proto/caffe.pb.h: No such file or directory 
+</code></pre></div></div>
+
+<p>解决参考链接 <a href="https://github.com/muupan/dqn-in-the-caffe/issues/3">https://github.com/muupan/dqn-in-the-caffe/issues/3</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	#根据错误日志，应该是caffe.pb.h没有在make的过程中通过protoc编译生成，因此可以手动编译即可
+	protoc src/caffe/proto/caffe.proto --cpp_out=. - make runtest 出现如下错误
+</code></pre></div></div>
+
+<blockquote>
+  <p>.build_release/tools/caffe: error while loading shared libraries: libglog.so.0: cannot open shared object file: No such file or directory</p>
+
+  <p>解决方法参考链接:<a href="http://blog.chinaunix.net/uid-26212859-id-3256667.html" title="参考链接">http://blog.chinaunix.net/uid-26212859-id-3256667.html</a></p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	#1、找到libglog的位置，因为手动源码安装，故一般在/usr/local/lib中
+	#2、添加共享库搜寻路径
+	cat /etc/ld.so.conf
+	include ld.so.conf.d/*.conf
+	echo "/usr/local/lib" &gt;&gt; /etc/ld.so.conf
+	ldconfig
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>make runtest 出现protobuf相关错误</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  #1、查看protobuf的当前版本
+  rpm -qa protobuf
+  #2、卸载protobuf
+  yum -y remove protobuf
+  #3、下载protobuf
+  wget -c -O protobuf.zip https://github.com/google/protobuf/archive/master.zip
+  #4、安装protobuf
+  unzip protobuf.zip
+  cd protobuf-master
+  ./autogen.sh
+  ./configure
+  make -j 32 &amp;&amp; make check
+  sudo make install
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="4安装显卡驱动配置caffe-gpu模式">4.安装显卡驱动，配置CAFFE GPU模式</h3>
+<ol>
+  <li>下载驱动，网址为 <a href="http://www.nvidia.cn/Download/index.aspx?lang=cn">http://www.nvidia.cn/Download/index.aspx?lang=cn</a></li>
+  <li>安装内核源码，以提供驱动编译&lt;/br&gt;
+上此网址<a href="http://www.rpmfind.net/linux/rpm2html/search.php?">http://www.rpmfind.net/linux/rpm2html/search.php?</a>下载centos6.5对应的内核源码，kernel-devel-2.6.32-431.29.2.el6.x86_64.rpm、kernel-headers-2.6.32-431.29.2.el6.x86_64.rpm</li>
+  <li><code class="highlighter-rouge">yum -y install kernel-devel-2.6.32-431.29.2.el6.x86_64.rpm kernel-headers-2.6.32-431.29.2.el6.x86_64.rpm</code></li>
+  <li>
+    <p>修改/etc/modprobe.d/blacklist.conf 文件，以阻止 nouveau 模块的加载</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 方法： 在文件末尾添加blacklist nouveau
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>重新建立initramfs image文件，该文件主要功能为维护系统内核，提供系统内核加载的位置信息等</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).img.bak
+ dracut /boot/initramfs-$(uname -r).img $(uname -r)
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>修改/etc/inittab，使系统开机进入init 3文本模式:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 将最后一行“id:5:initdefault:”修改成“id:3:initdefault:”
+ 说明：5代表系统启动时默认进入x-window图形界面，3代表默认进入终端模式。
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>阻止kernel加载nouveau模块</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo vim /boot/grub/grub.conf
+ 在当前内核版本选项的kernel行的末尾加上 rdblacklist=nouveau vga=792
+ 重启 reboot
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>​安装NVIDIA驱动</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1.输入root和password，进入根用户模式下,确保nouveau kernel driver没有被加载
+ # lsmod | grep nouveau
+ 2.进入驱动程序所在目录,开始安装
+ # sudo chmod +x NVIDIA-Linux-x86-331.20.run
+ # sudo ./NVIDIA-Linux-x86-331.20.run
+ 3.安装过程中，根据提示选择accept，yes 或 OK，即可完成安装：
+      如果提示有旧驱动，询问是否删除旧驱动，选Yes；
+      如果提示缺少某某模块（modules），询问是否上网下载，选no；
+      如果提示编译模块，询问是否进行编译，选ok；
+      如果提示将要修改xorg.conf，询问是否允许，选Yes；
+      接下来就是等待安装完成。
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>修改/etc/inittab，使系统开机进入init 5图形界面模式</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 将最后一行“id:3:initdefault:”修改成“id:5:initdefault:”
+ 重启
+ #reboot
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>检查nvidia驱动是否安装成功</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.对于一般的普通显卡，geforce系列等
+登陆后，在系统- 首选项里可以看到NVIDIA X Server Settings菜单，即可证明安装成功
+2.对于Tesla系列等高端计算卡
+可以通过命令nvidia-smi来查看GPU的配置运行情况
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="5安装cuda">5.安装cuda</h3>
+<ol>
+  <li>
+    <p>下载<a href="http://developer.download.nvidia.com/compute/cuda/6_5/rel/installers/cuda_6.5.14_linux_64.run">CUDA 6.5</a>的RUN文件</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ chmod +x cuda_6.5_XXXX.run
+ $ ./cuda_6.5_XXXX.run 跳过第一项的驱动安装，后面要么yes要么默认就可以了。
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>环境变量配置</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> /usr/local/cuda/bin加入PATH
+ /usr/local/cuda/lib64加入/etc/ld.so.conf
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>重新编译安装caffe</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 回到安装caffe的流程上
+ 注释 CPU_ONLY := 1，make clean,make all -j 32,make install
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">熊思</div>
+      <div class="bio">
+        <p>热爱技术&设计，简单乐观爱创造</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//weibo.com/sxiong5" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//zhihu.com/people/xiong-si-50/" target="_blank">
+                    <i class="iconfont icon-zhihu"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/sixiong" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="sxiong@hust.edu.cn" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2016/01/19/linux%E4%B8%8B%E5%AE%9A%E6%97%B6%E9%87%8D%E8%BF%9E%E7%BD%91%E7%BB%9CPython%E8%84%9A%E6%9C%AC%E5%AE%9E%E7%8E%B0.html" class="read-next-link"></a>
+        <section>
+          <span>linux下定时重连网络Python脚本实现</span>
+          <p>需求背景  实验室的服务器联网方式采用的是使用锐捷客户端连接学校的校园网，使用的账号是何老师的教师账号，因为教师账...</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2016/01/01/timeline.html" class="read-next-link"></a>
+          <section>
+            <span>2015年总结</span>
+            <p>2015年  1月初从百纳公司实习结束,负责防刷币支付模块，该公司主要产品为海豚浏览器  结束实习，进入华科DML...</p>
+          </section>
+          
+      </div>
+      
+    </section>
+  </section>
+
+  <footer class="g-footer">
+  <section>熊二狗的独立博客 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  <script>
+    
+  </script>
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

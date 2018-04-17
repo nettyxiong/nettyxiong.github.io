@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>近期计划 - 熊二狗的独立博客</title>
+    <title>如何在github上创建提交pull request - 熊二狗的独立博客</title>
     <meta name="author"  content="熊思">
-    <meta name="description" content="近期计划">
-    <meta name="keywords"  content="plan">
+    <meta name="description" content="如何在github上创建提交pull request">
+    <meta name="keywords"  content="git">
     <!-- Open Graph -->
-    <meta property="og:title" content="近期计划 - 熊二狗的独立博客">
+    <meta property="og:title" content="如何在github上创建提交pull request - 熊二狗的独立博客">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2015/04/19/todo.html">
+    <meta property="og:url" content="http://localhost:4000/2016/03/11/gitPullPequest.html">
     <meta property="og:description" content="昵称悟空，千禧一代，前端开发者/伪极客/灵魂摄影师，热爱技术&设计。很高兴能在这里与你分享我对技术和生活的思考。">
     <meta property="og:site_name" content="熊二狗的独立博客">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -113,14 +113,14 @@ Author: Ray-Eldath
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#plan" class="post-tag">plan</a>
+            <a href="http://localhost:4000/tags#git" class="post-tag">git</a>
           
         
       </div>
-      <h1>近期计划</h1>
+      <h1>如何在github上创建提交pull request</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">熊思</a></></span>
-        <time class="post-meta-item" datetime="15-04-19"><i class="iconfont icon-date"></i>19 Apr 2015</time>
+        <time class="post-meta-item" datetime="16-03-11"><i class="iconfont icon-date"></i>11 Mar 2016</time>
       </div>
     </div>
     
@@ -130,24 +130,31 @@ Author: Ray-Eldath
     
 
     <article class="markdown-body">
-      <h1 id="java-代码库">Java 代码库</h1>
+      <h3 id="pull-requset">pull requset</h3>
+<p>所谓pull request,也就是请求对第三方公共库进行修改，我们把我们自己的修改提交到该项目的管理员，让管理员来判断是否对该项目进行修改，以合并该修改请求</p>
 
+<h3 id="new-pull-request">new pull request</h3>
+<p>在github上，Pullrequests=&gt;New Pull Request，可以看到我们只能比对两个分支。在此分为两种情况，第一种情况为：我们自己是该项目的开发成员，并且在分支中提出了自己的修改，我们可以在此提出pull request;然而大多比较常见的是第二种情况：我们不是该项目的开发者，在这种情况下，我们首先需要做的是fork该项目，在自己fork的项目中进行修改后，再点击compare across forks链接，进行提交</p>
+
+<h3 id="情况二举例">情况二举例</h3>
 <ul>
-  <li>学习Java也有将近3年的时间了，对这门语言的感悟还是蛮多的，其中最深的一种就是，<em>it can do anything</em>，由此可以看出它的强大。平时用写Java代码的时候，大多是功能驱动自己去“写”代码，比如，现在需要一个将图片上传到客户端的函数，就去google“图片上传 Java”,然后找一种能用的方法，贴到自己代码中，这种行为其实并没有什么不对，因为，程序员本来就是懒的，虽然不见得这个函数有多么难，但是你需要去理解一堆复杂难看的Java流、字节API，这会花费你大量的时间，在做项目的时候，我们往往关注的是功能和效率，这种时间消耗是无法容忍的。然而，现在我发现，往往我会在google里面找相同的代码往自己的项目里面放，大多是一些工具类、静态方法，比如加密、解密方法等，我已经不止一次去google这种代码，我已经有点不耐其烦了，因为google也是需要时间的，google需要你的慧眼在一大堆的滥竽充数的博客中找到你所需要的代码，这是需要程序员自己的搜索能力和耐心的。于是，我想到了在实习期间Chen Wang说过的，<em>一个合格的Java程序员需要构建自己的代码库</em>，直到现在才深刻的认识到这个代码库的必要性。<br /></li>
-  <li>有这样一句话，<em>你在做的任何事情，这个世界上一定有人也在做类似的事情</em>。于是，我想到了在google里面”Java 代码库”,<img src="http://sixiong.github.io/images/java/codeKu.jpg" alt="Alt text" />,于是我们可以去前几个链接中去搜索寻找我们需要的代码，cp并修改到自己的代码库中来，我们可以将我们建立好的代码库，放在github上来进行维护，当然，我们也可以在github上fork别人的java代码库，从中提取自己需要的代码</li>
-  <li>总之，代码库的建立是一项需要长期积累的工作，它需要我们不定期的添加维护我们认为优秀的代码，现在开个头，在github上新建一个项目，来存储java代码库。</li>
+  <li>我们随便选择一个别人(kzx1025)的项目，如kzx1025/LeetCode:git@github.com:kzx1025/LeetCode.git</li>
+  <li>我们(sixiong)在github中fork该项目</li>
+  <li>在本地clone我们fork后的项目，即git clone git@github.com:sixiong/LeetCode.git</li>
+  <li>cd LeeCode</li>
+  <li>git remote add upstream git@github.com:kzx1025/LeetCode.git</li>
+  <li>git fetch upstream</li>
+  <li>修改一些文件</li>
+  <li>git add –all</li>
+  <li>git commit -m “a new pull request”</li>
+  <li>git push origin master</li>
+  <li>在github上打开kzx1025/LeetCode项目主页，选择Pull Requests,点击compare across forks链接，即可把我们刚刚提交的修改提交到别人的项目中，并可对该Pull Request进一步说明</li>
 </ul>
 
-<h1 id="android-模块工具库">android 模块工具库</h1>
-<ul>
-  <li>最近接了个关于android方面的项目，这是自己第一次开发商用型的app，说实话还是有点紧张的，迄今为止做了20多天，感觉感悟还是很多的，尤其是关于android代码的复用性方面。</li>
-  <li>缓存、图片上传、http（异步和同步）、加密解密、sqlitle、IM消息、移动支付,这些每一个功能都可以单独拆分出来作为一个单独的板块来进行开发，如果我们能够对这些模块进行很好的整合，那么一个app的开发就事半功倍了。</li>
-  <li>android开发，和java开发及其相似，我们需要做的是一种整合各种零散功能模块、工具、控件的能力，使得这些在一个整体系统中合理的使用，所以，我们也需要去维护我们自己的android开发模块工具库，这个也是需要我们日常的积累的，在平时的项目中吸取经验教训，去挖掘好用的开源工具，比如，做这个项目的时候，我就觉得ASimpleCache这个缓存实现就还不错。</li>
-  <li>总之，软件开发，也是一个日益积累的过程，在积累的过程中，我们才能避免重复造轮子，更加高效的去关注软件开发本身的事情上来。</li>
-</ul>
+<h3 id="参考链接">参考链接</h3>
+<p><a href="https://www.shiyanlou.com/courses/4">实验楼Git实战</a></p>
 
-<h1 id="总结">总结</h1>
-<p>这阵子感觉很忙碌，一个是android外包项目的事情，然后就是毕设的事情（刚开动），时间还是有点紧张的，这个代码、工具库的事，还是先缓缓，现在只是先开个头，列个计划出来，鼓励自己坚持干下去!</p>
+<p><a href="http://stackoverflow.com/questions/14680711/how-to-do-a-github-pull-request">stackoverflow:how-to-do-a-github-pull-request</a></p>
 
     </article>
 
@@ -200,10 +207,10 @@ Author: Ray-Eldath
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2015/09/20/firstReport.html" class="read-next-link"></a>
+        <a href="/2016/03/13/addExtraModules.html" class="read-next-link"></a>
         <section>
-          <span>SDN网络Report One</span>
-          <p>mininet-pox的安装  实验环境：Ubuntu 12.04  mininet的安装</p>
+          <span>python添加自定义库</span>
+          <p>前言  Python库目录          site-packages                  默认的...</p>
         </section>
         
      </div>
@@ -211,10 +218,10 @@ Author: Ray-Eldath
 
       
       <div class="read-next-item">
-        <a href="/2014/11/17/gitBasic.html" class="read-next-link"></a>
+        <a href="/2016/02/27/dairy.html" class="read-next-link"></a>
           <section>
-            <span>git基础命令</span>
-            <p>git原理简图：</p>
+            <span>这个世界需要心怀感念</span>
+            <p>###外公拜年###  过年前一天，父母不在，独自一人去赤壁提前给外公拜年。大舅、二姨、小舅三家全聚齐，热闹氛围感...</p>
           </section>
           
       </div>

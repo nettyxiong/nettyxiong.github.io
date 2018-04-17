@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>近期计划 - 熊二狗的独立博客</title>
+    <title>n元一维向量向左旋转i个位置 - 熊二狗的独立博客</title>
     <meta name="author"  content="熊思">
-    <meta name="description" content="近期计划">
-    <meta name="keywords"  content="plan">
+    <meta name="description" content="n元一维向量向左旋转i个位置">
+    <meta name="keywords"  content="面试">
     <!-- Open Graph -->
-    <meta property="og:title" content="近期计划 - 熊二狗的独立博客">
+    <meta property="og:title" content="n元一维向量向左旋转i个位置 - 熊二狗的独立博客">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2015/04/19/todo.html">
+    <meta property="og:url" content="http://localhost:4000/2015/09/28/%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.html">
     <meta property="og:description" content="昵称悟空，千禧一代，前端开发者/伪极客/灵魂摄影师，热爱技术&设计。很高兴能在这里与你分享我对技术和生活的思考。">
     <meta property="og:site_name" content="熊二狗的独立博客">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -113,14 +113,14 @@ Author: Ray-Eldath
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#plan" class="post-tag">plan</a>
+            <a href="http://localhost:4000/tags#%E9%9D%A2%E8%AF%95" class="post-tag">面试</a>
           
         
       </div>
-      <h1>近期计划</h1>
+      <h1>n元一维向量向左旋转i个位置</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">熊思</a></></span>
-        <time class="post-meta-item" datetime="15-04-19"><i class="iconfont icon-date"></i>19 Apr 2015</time>
+        <time class="post-meta-item" datetime="15-09-28"><i class="iconfont icon-date"></i>28 Sep 2015</time>
       </div>
     </div>
     
@@ -130,24 +130,51 @@ Author: Ray-Eldath
     
 
     <article class="markdown-body">
-      <h1 id="java-代码库">Java 代码库</h1>
+      <h2 id="问题描述">问题描述</h2>
+<p>将n元一维向量向左旋转i个位置。ex:abcdefgh,n=8,i=3,向左旋转后得到的字符串即为defghabc</p>
 
-<ul>
-  <li>学习Java也有将近3年的时间了，对这门语言的感悟还是蛮多的，其中最深的一种就是，<em>it can do anything</em>，由此可以看出它的强大。平时用写Java代码的时候，大多是功能驱动自己去“写”代码，比如，现在需要一个将图片上传到客户端的函数，就去google“图片上传 Java”,然后找一种能用的方法，贴到自己代码中，这种行为其实并没有什么不对，因为，程序员本来就是懒的，虽然不见得这个函数有多么难，但是你需要去理解一堆复杂难看的Java流、字节API，这会花费你大量的时间，在做项目的时候，我们往往关注的是功能和效率，这种时间消耗是无法容忍的。然而，现在我发现，往往我会在google里面找相同的代码往自己的项目里面放，大多是一些工具类、静态方法，比如加密、解密方法等，我已经不止一次去google这种代码，我已经有点不耐其烦了，因为google也是需要时间的，google需要你的慧眼在一大堆的滥竽充数的博客中找到你所需要的代码，这是需要程序员自己的搜索能力和耐心的。于是，我想到了在实习期间Chen Wang说过的，<em>一个合格的Java程序员需要构建自己的代码库</em>，直到现在才深刻的认识到这个代码库的必要性。<br /></li>
-  <li>有这样一句话，<em>你在做的任何事情，这个世界上一定有人也在做类似的事情</em>。于是，我想到了在google里面”Java 代码库”,<img src="http://sixiong.github.io/images/java/codeKu.jpg" alt="Alt text" />,于是我们可以去前几个链接中去搜索寻找我们需要的代码，cp并修改到自己的代码库中来，我们可以将我们建立好的代码库，放在github上来进行维护，当然，我们也可以在github上fork别人的java代码库，从中提取自己需要的代码</li>
-  <li>总之，代码库的建立是一项需要长期积累的工作，它需要我们不定期的添加维护我们认为优秀的代码，现在开个头，在github上新建一个项目，来存储java代码库。</li>
-</ul>
+<h2 id="解决思路分析">解决思路分析</h2>
 
-<h1 id="android-模块工具库">android 模块工具库</h1>
-<ul>
-  <li>最近接了个关于android方面的项目，这是自己第一次开发商用型的app，说实话还是有点紧张的，迄今为止做了20多天，感觉感悟还是很多的，尤其是关于android代码的复用性方面。</li>
-  <li>缓存、图片上传、http（异步和同步）、加密解密、sqlitle、IM消息、移动支付,这些每一个功能都可以单独拆分出来作为一个单独的板块来进行开发，如果我们能够对这些模块进行很好的整合，那么一个app的开发就事半功倍了。</li>
-  <li>android开发，和java开发及其相似，我们需要做的是一种整合各种零散功能模块、工具、控件的能力，使得这些在一个整体系统中合理的使用，所以，我们也需要去维护我们自己的android开发模块工具库，这个也是需要我们日常的积累的，在平时的项目中吸取经验教训，去挖掘好用的开源工具，比如，做这个项目的时候，我就觉得ASimpleCache这个缓存实现就还不错。</li>
-  <li>总之，软件开发，也是一个日益积累的过程，在积累的过程中，我们才能避免重复造轮子，更加高效的去关注软件开发本身的事情上来。</li>
-</ul>
+<h3 id="思路一">思路一</h3>
+<p>将前i个元素拷贝到一个临时的空间中，将后续的n-i+1个元素向前移动i个位置，再将临时空间中的i个元素连接起来。大概思路就是将向量分为两个部分，借助临时空间交换两个部分的顺序即可。&lt;/br&gt;
+时间复杂度：O(1)&lt;/br&gt;
+空间复杂度：O(i)=&gt;O(n)</p>
 
-<h1 id="总结">总结</h1>
-<p>这阵子感觉很忙碌，一个是android外包项目的事情，然后就是毕设的事情（刚开动），时间还是有点紧张的，这个代码、工具库的事，还是先缓缓，现在只是先开个头，列个计划出来，鼓励自己坚持干下去!</p>
+<h3 id="思路二">思路二</h3>
+<p>对向量进行循环向左移动操作，即将第一个元素移到元素尾端，其它元素一次往前移动，重复上述操作i次即可实现问题要求的旋转&lt;/br&gt;
+时间复杂度：O(i)=&gt;O(n)&lt;/br&gt;
+空间复杂度：O(1)</p>
+
+<h3 id="思路三">思路三</h3>
+<p>将向量分为0~i-1与i~n两个部分，将这两个部分分别进行反转，然后对整个向量进行反转，即可达到问题描述的效果。拿上述例子进行说明，分为abc与defgh两个部分，abc反转得到cba，defgh反转得到hgfed，连在一起即为cbahgfed，对cbahgfed进行反转得到defghabc。
+分析可知，此思路的核心操作是进行3次反转运算，只要实现一个反转函数即可。&lt;/br&gt;
+时间复杂度：由反转操作决定&lt;/br&gt;
+空间复杂度：由反转操作决定</p>
+
+<h5 id="思路三java代码实现">思路三java代码实现</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import junit.framework.TestCase;
+
+
+public class MainTest extends TestCase {
+  //旋转向量函数实现
+  public static String rotate(String source,int i){
+    int n = source.length();
+    StringBuilder head = new StringBuilder(source.substring(0, i)).reverse();
+    StringBuilder end = new StringBuilder(source.substring(i, n)).reverse();
+    return new StringBuilder(head.append(end)).reverse().toString();
+  }
+  
+  public void test(){
+    String example = "abcdefgh";
+    assertEquals("defghabc", rotate(example, 3));
+  }
+}
+</code></pre></div></div>
+
+<p>上述代码中借助了java库中自带的reverse反转函数,性能可能比较差，并且额外消耗了大小为2*n的空间，最好的做法是直接在源source字符串上进行3次反转操作，可以省去额外空间的消耗。</p>
+
+<h3 id="结论">结论</h3>
+<p>虽然问题实现起来并不难，但当时间、空间复杂度有一定要求的情况下，我们需要精巧的结构和算法来实现，特别是当上述的n值在千万级别的时候，一个低时间、空间复杂度的算法是必须的，而这些精巧的算法需要我们的经验与积累，此篇只是一个开篇，日后会收录总结一些常见的精巧算法。</p>
 
     </article>
 
@@ -200,10 +227,10 @@ Author: Ray-Eldath
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2015/09/20/firstReport.html" class="read-next-link"></a>
+        <a href="/2015/09/29/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C.html" class="read-next-link"></a>
         <section>
-          <span>SDN网络Report One</span>
-          <p>mininet-pox的安装  实验环境：Ubuntu 12.04  mininet的安装</p>
+          <span>最大子序列和</span>
+          <p>问题描述给定整数 ，求的最大值。约定当所有整数都为负数时，最大子序列的和为0。</p>
         </section>
         
      </div>
@@ -211,10 +238,10 @@ Author: Ray-Eldath
 
       
       <div class="read-next-item">
-        <a href="/2014/11/17/gitBasic.html" class="read-next-link"></a>
+        <a href="/2015/09/20/firstReport.html" class="read-next-link"></a>
           <section>
-            <span>git基础命令</span>
-            <p>git原理简图：</p>
+            <span>SDN网络Report One</span>
+            <p>mininet-pox的安装  实验环境：Ubuntu 12.04  mininet的安装</p>
           </section>
           
       </div>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每个程序员1小时内必须解决的5个编程问题-python解决 - 熊二狗的独立博客</title>
+    <meta name="author"  content="熊思">
+    <meta name="description" content="每个程序员1小时内必须解决的5个编程问题-python解决">
+    <meta name="keywords"  content="面试">
+    <!-- Open Graph -->
+    <meta property="og:title" content="每个程序员1小时内必须解决的5个编程问题-python解决 - 熊二狗的独立博客">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2016/02/22/five-problems-in-1hour.html">
+    <meta property="og:description" content="昵称悟空，千禧一代，前端开发者/伪极客/灵魂摄影师，热爱技术&设计。很高兴能在这里与你分享我对技术和生活的思考。">
+    <meta property="og:site_name" content="熊二狗的独立博客">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header class="g-banner post-header post-pattern-seaOfClouds bgcolor-default post-no-cover" data-theme="default">
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#%E9%9D%A2%E8%AF%95" class="post-tag">面试</a>
+          
+        
+      </div>
+      <h1>每个程序员1小时内必须解决的5个编程问题-python解决</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i><a href="http://localhost:4000" target="_blank" rel="author">熊思</a></></span>
+        <time class="post-meta-item" datetime="16-02-22"><i class="iconfont icon-date"></i>22 Feb 2016</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h3 id="问题1">问题1</h3>
+
+<blockquote>
+  <p>使用for循环、while循环和递归写出3个函数来计算给定数列的总和</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cal_sum_with_for</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+		<span class="nb">sum</span> <span class="o">+=</span> <span class="n">i</span>
+	<span class="k">return</span> <span class="nb">sum</span>
+
+<span class="k">def</span> <span class="nf">cal_sum_with_while</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">):</span>
+		<span class="nb">sum</span> <span class="o">+=</span> <span class="n">i</span>
+		<span class="n">i</span><span class="o">++</span>
+	<span class="k">return</span> <span class="nb">sum</span>
+
+<span class="k">def</span> <span class="nf">recur</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="k">return</span> <span class="mi">1</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="k">return</span> <span class="n">recur</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span>
+</code></pre></div></div>
+
+<h3 id="问题2">问题2</h3>
+
+<blockquote>
+  <p>编写一个交错合并列表元素的函数。例如：给定的两个列表为[a，B，C]和[1，2，3]，函数返回[a，1，B，2，C，3]</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="k">def</span> <span class="nf">merge_list</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+		<span class="n">c</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+			<span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+			<span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+		<span class="k">return</span> <span class="n">c</span>		
+</code></pre></div></div>
+
+<h3 id="问题3">问题3</h3>
+<blockquote>
+  <p>编写一个计算前100位斐波那契数的函数。根据定义，斐波那契序列的前两位数字是0和1，随后的每个数字是前两个数字的和。例如，前10位斐波那契数为：0，1，1，2，3，5，8，13，21，34。</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fibonacci_list</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+	<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+		<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+	<span class="k">return</span> <span class="n">result</span>
+
+<span class="k">print</span> <span class="n">fibonacci_list</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="问题4">问题4</h3>
+<blockquote>
+  <p>编写一个能将给定非负整数列表中的数字排列成最大数字的函数。例如，给定[50，2，1,9]，最大数字为95021。</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getFirstNum</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">10</span>
+		<span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">10</span>
+		<span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="k">return</span> <span class="n">temp</span>
+
+<span class="k">def</span> <span class="nf">getMaxNum</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+	<span class="n">adict</span> <span class="o">=</span> <span class="p">{}</span>
+	<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+		<span class="n">adict</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">getFirstNum</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+	<span class="n">sorted_adict</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">adict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sorted_adict</span><span class="p">:</span>
+		<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+	<span class="n">astr</span> <span class="o">=</span> <span class="s">""</span>
+	<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+		<span class="n">astr</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+	<span class="k">print</span> <span class="nb">int</span><span class="p">(</span><span class="n">astr</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">result</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">getMaxNum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="问题5">问题5</h3>
+
+<blockquote>
+  <p>编写一个在1，2，…，9（顺序不能变）数字之间插入+或-或什么都不插入，使得计算结果总是100的程序，并输出所有的可能性。例如：1 + 2 + 34 – 5 + 67 – 8 + 9 = 100。</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#求出所有的表达式组合</span>
+<span class="k">def</span> <span class="nf">getALLBiaoDashi</span><span class="p">():</span>
+	<span class="n">faze</span> <span class="o">=</span> <span class="p">[</span><span class="s">' + '</span><span class="p">,</span><span class="s">' - '</span><span class="p">,</span><span class="s">' * '</span><span class="p">,</span><span class="s">' / '</span><span class="p">,</span><span class="s">''</span><span class="p">]</span>
+	<span class="n">yunsuanfu</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="s">'1'</span><span class="p">,</span><span class="s">'2'</span><span class="p">,</span><span class="s">'3'</span><span class="p">,</span><span class="s">'4'</span><span class="p">,</span><span class="s">'5'</span><span class="p">,</span><span class="s">'6'</span><span class="p">,</span><span class="s">'7'</span><span class="p">,</span><span class="s">'8'</span><span class="p">,</span><span class="s">'9'</span><span class="p">]</span>
+	<span class="n">biaodashi</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">):</span>
+		<span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="n">biaodashi_temp</span> <span class="o">=</span> <span class="p">[]</span>
+			<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+				<span class="n">temp</span> <span class="o">=</span> <span class="s">""</span>
+				<span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">faze</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+				<span class="c"># print temp</span>
+				<span class="n">biaodashi_temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+			<span class="n">biaodashi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">biaodashi_temp</span><span class="p">)</span>
+		<span class="k">else</span> <span class="p">:</span>
+			<span class="n">biaodashi_temp</span> <span class="o">=</span> <span class="p">[]</span>
+			<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+				<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">biaodashi</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+					<span class="n">temp</span> <span class="o">=</span> <span class="n">s</span>
+					<span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="n">faze</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+					<span class="c"># print temp</span>
+					<span class="n">biaodashi_temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>	
+			<span class="n">biaodashi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">biaodashi_temp</span><span class="p">)</span>
+		<span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+	<span class="k">return</span> <span class="n">biaodashi</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+
+<span class="c">#比较两个运算符之间优先关系</span>
+<span class="k">def</span> <span class="nf">compareYouXianJi</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="s">'*'</span> <span class="ow">or</span> <span class="n">a</span> <span class="o">==</span> <span class="s">'/'</span><span class="p">:</span>
+		<span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="s">'*'</span> <span class="ow">or</span> <span class="n">b</span> <span class="o">==</span> <span class="s">'/'</span><span class="p">:</span>
+			<span class="k">return</span> <span class="mi">0</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">return</span> <span class="mi">1</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="k">return</span> <span class="mi">0</span>
+
+<span class="c">#将中缀表达式转换为后缀表达式</span>
+<span class="k">def</span> <span class="nf">converToHouZhui</span><span class="p">(</span><span class="n">biaodashi</span><span class="p">):</span>
+	<span class="n">elems</span> <span class="o">=</span> <span class="n">biaodashi</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+	<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">stack_fuhao</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">elem</span> <span class="o">!=</span> <span class="s">'+'</span> <span class="ow">and</span> <span class="n">elem</span> <span class="o">!=</span> <span class="s">'-'</span> <span class="ow">and</span> <span class="n">elem</span> <span class="o">!=</span> <span class="s">'*'</span> <span class="ow">and</span> <span class="n">elem</span> <span class="o">!=</span> <span class="s">'/'</span><span class="p">):</span>
+			<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack_fuhao</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+				<span class="n">stack_fuhao</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack_fuhao</span><span class="p">)</span> <span class="o">!=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">compareYouXianJi</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span><span class="n">stack_fuhao</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+					<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack_fuhao</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+				<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack_fuhao</span><span class="p">)</span> <span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">compareYouXianJi</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span><span class="n">stack_fuhao</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+					<span class="n">stack_fuhao</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+
+	<span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stack_fuhao</span><span class="p">)):</span>
+		<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack_fuhao</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+	<span class="k">return</span> <span class="n">result</span>
+
+<span class="c">#计算后缀表达式的值</span>
+<span class="k">def</span> <span class="nf">getValueByHouZhui</span><span class="p">(</span><span class="n">houzhui_biaodashi_elems</span><span class="p">):</span>
+	<span class="n">numbers</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">houzhui_biaodashi_elems</span><span class="p">:</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">elem</span> <span class="o">!=</span> <span class="s">'+'</span> <span class="ow">and</span> <span class="n">elem</span> <span class="o">!=</span> <span class="s">'-'</span> <span class="ow">and</span> <span class="n">elem</span> <span class="o">!=</span> <span class="s">'*'</span> <span class="ow">and</span> <span class="n">elem</span> <span class="o">!=</span> <span class="s">'/'</span><span class="p">):</span>
+			<span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">elem1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+			<span class="n">elem2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+			<span class="k">if</span> <span class="n">elem</span> <span class="o">==</span> <span class="s">'+'</span><span class="p">:</span>
+				<span class="n">temp</span> <span class="o">=</span> <span class="n">elem2</span> <span class="o">+</span> <span class="n">elem1</span>
+			<span class="k">elif</span> <span class="n">elem</span> <span class="o">==</span> <span class="s">'-'</span><span class="p">:</span>
+				<span class="n">temp</span> <span class="o">=</span> <span class="n">elem2</span> <span class="o">-</span> <span class="n">elem1</span>
+			<span class="k">elif</span> <span class="n">elem</span> <span class="o">==</span> <span class="s">'*'</span><span class="p">:</span>
+				<span class="n">temp</span> <span class="o">=</span> <span class="n">elem2</span> <span class="o">*</span> <span class="n">elem1</span>
+			<span class="k">elif</span> <span class="n">elem</span> <span class="o">==</span> <span class="s">'/'</span><span class="p">:</span>
+				<span class="n">temp</span> <span class="o">=</span> <span class="n">elem2</span> <span class="o">/</span> <span class="n">elem1</span>
+			<span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">temp</span>
+
+<span class="c">#获取所有满足条件的组合</span>
+<span class="k">def</span> <span class="nf">getEquals100</span><span class="p">():</span>
+	<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">getALLBiaoDashi</span><span class="p">():</span>
+		<span class="k">if</span> <span class="n">getValueByHouZhui</span><span class="p">(</span><span class="n">converToHouZhui</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">==</span> <span class="mf">100.0</span><span class="p">:</span>
+			<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">result</span>
+	
+<span class="k">print</span> <span class="n">getEquals100</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="总结">总结</h3>
+<p>在微博上看到这个帖子<a href="http://www.codeceo.com/article/5-problems-programmer-1-hour.html">每个程序员1小时内必须解决的5个编程问题</a>,觉得很有意思，正好最近在使用python， 于是决定用python尝试着解决一下，花了整个下午的时间（说好的1小时呢），到晚上才整出整套代码。其中4、5题，都是采用比较常规的方法，虽然解决了问题，但其空间性能较低，应该有其它较好的方法，欢迎探讨！</p>
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">熊思</div>
+      <div class="bio">
+        <p>热爱技术&设计，简单乐观爱创造</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//weibo.com/sxiong5" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//zhihu.com/people/xiong-si-50/" target="_blank">
+                    <i class="iconfont icon-zhihu"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//github.com/sixiong" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="sxiong@hust.edu.cn" target="_blank">
+                    <i class="iconfont icon-email"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2016/02/27/dairy.html" class="read-next-link"></a>
+        <section>
+          <span>这个世界需要心怀感念</span>
+          <p>###外公拜年###  过年前一天，父母不在，独自一人去赤壁提前给外公拜年。大舅、二姨、小舅三家全聚齐，热闹氛围感...</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2016/01/19/linux%E4%B8%8B%E5%AE%9A%E6%97%B6%E9%87%8D%E8%BF%9E%E7%BD%91%E7%BB%9CPython%E8%84%9A%E6%9C%AC%E5%AE%9E%E7%8E%B0.html" class="read-next-link"></a>
+          <section>
+            <span>linux下定时重连网络Python脚本实现</span>
+            <p>需求背景  实验室的服务器联网方式采用的是使用锐捷客户端连接学校的校园网，使用的账号是何老师的教师账号，因为教师账...</p>
+          </section>
+          
+      </div>
+      
+    </section>
+  </section>
+
+  <footer class="g-footer">
+  <section>熊二狗的独立博客 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  <script>
+    
+  </script>
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>
