@@ -8,18 +8,18 @@ date: 2015-10-12
 ---
 
 ## which
-```
+```bash
 which [-a] command
 ```
 其中-a选项表示在**PATH**目录中可以找到的指令都列出，而不单单是第一个被查找的指令名称，--all的简写。
 例如，我们可以查找在系统中gcc命令所处的路径，当第一个搜索出来的路径是在我们自行安装的gcc版本，指定-a选项搜索多出来的一个路径是ubuntu系统自带的gcc版本。
 
-```
+```bash
 >sxiong@sxiong-X450JF:~$ which gcc
 /usr/local/bin/gcc
 ```
 
-```
+```bash
 >sxiong@sxiong-X450JF:~$ which -a gcc
 /usr/local/bin/gcc
 /usr/bin/gcc
@@ -30,9 +30,10 @@ which [-a] command
 
 ## whereis
 
-```
+```bash
 whereis [-bmsu] 档案或目录名
 ```
+
 * b:只找 binary 格式的档案,即限定查找二进制文件
 * m:限定在说明文件man路径下进行查找
 * s:查找命令的源代码所在位置
@@ -42,15 +43,15 @@ whereis [-bmsu] 档案或目录名
 
 
 ## locate
-```
+```bash
 locate [-ir] keyword
 ```
 * i:忽略大小写
 * r:使用正规运算式做查找的条件
 
-```
+```bash
 #查找以“/home/sxiong/rj/x64”开头的文件
-> sxiong@sxiong-X450JF:~$ locate -ir ^/home/sxiong/rj/x64
+sxiong@sxiong-X450JF:~$ locate -ir ^/home/sxiong/rj/x64
 /home/sxiong/rj/x64
 /home/sxiong/rj/x64/.rgsusfexit
 /home/sxiong/rj/x64/README
@@ -60,7 +61,7 @@ locate [-ir] keyword
 ...
 ```
 
-```
+```bash
 #查找以"selinux/makEfile"结尾并忽略大小写的文件
 > sxiong@sxiong-X450JF:~$ locate -ir selinux/makEfile$ 
 /usr/src/linux-headers-3.2.0-29/scripts/selinux/Makefile
@@ -70,7 +71,7 @@ locate [-ir] keyword
 
 这个命令比whereis好用之处在于它支持正则匹配查询，可以查找所有与查询字段相关的所有文件，而非二进制文件、说明文件、源代码文件等。
 ## find
-```
+```bash
 find [PATH] [option] [action]
 ```
 * PATH： 所要搜索的目录及其所有子目录。默认为当前目录。
@@ -79,14 +80,14 @@ find [PATH] [option] [action]
  
 这个指令功能十分强大，在此仅说明一些常见的用法。
 #### -name 按照文件名查找文件
-```
+```bash
 #在当前文件夹下查找所有java后缀文件
 > sxiong@sxiong-X450JF:~$ find . -name "*.java"
 ```
 #### -type 按照文件类型查找文件
 类型主要有:一般正规档案 (f),装置档案 (b, c), 目录 (d), 链接 (l), socket (s),及 FIFO (p) 等属性。
 
-```
+```bash
 #查找rj目录下的目录文件
 >sxiong@sxiong-X450JF:~$ find rj/ -type d
 rj/
@@ -98,7 +99,7 @@ rj/x64/log
 ```
 
 #### -size 按照文件大小查找文件
-```
+```bash
 #查找rj目录下大于1MB的文件
 >sxiong@sxiong-X450JF:~$ find rj/ -size +1M
 rj/x86/rjsupplicant

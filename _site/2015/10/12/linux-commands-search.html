@@ -131,16 +131,16 @@ Author: Ray-Eldath
 
     <article class="markdown-body">
       <h2 id="which">which</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>which [-a] command
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>which <span class="o">[</span><span class="nt">-a</span><span class="o">]</span> <span class="nb">command</span>
 </code></pre></div></div>
 <p>其中-a选项表示在<strong>PATH</strong>目录中可以找到的指令都列出，而不单单是第一个被查找的指令名称，–all的简写。
 例如，我们可以查找在系统中gcc命令所处的路径，当第一个搜索出来的路径是在我们自行安装的gcc版本，指定-a选项搜索多出来的一个路径是ubuntu系统自带的gcc版本。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;sxiong@sxiong-X450JF:~$ which gcc
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span>sxiong@sxiong-X450JF:~<span class="nv">$ </span>which gcc
 /usr/local/bin/gcc
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;sxiong@sxiong-X450JF:~$ which -a gcc
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span>sxiong@sxiong-X450JF:~<span class="nv">$ </span>which <span class="nt">-a</span> gcc
 /usr/local/bin/gcc
 /usr/bin/gcc
 </code></pre></div></div>
@@ -149,8 +149,9 @@ Author: Ray-Eldath
 
 <h2 id="whereis">whereis</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whereis [-bmsu] 档案或目录名
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whereis <span class="o">[</span><span class="nt">-bmsu</span><span class="o">]</span> 档案或目录名
 </code></pre></div></div>
+
 <ul>
   <li>b:只找 binary 格式的档案,即限定查找二进制文件</li>
   <li>m:限定在说明文件man路径下进行查找</li>
@@ -161,15 +162,15 @@ Author: Ray-Eldath
 <p>这个使用起来并不太方便，个人习惯使用locate的类似于“模糊查找”来满足日常的需求。</p>
 
 <h2 id="locate">locate</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate [-ir] keyword
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate <span class="o">[</span><span class="nt">-ir</span><span class="o">]</span> keyword
 </code></pre></div></div>
 <ul>
   <li>i:忽略大小写</li>
   <li>r:使用正规运算式做查找的条件</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#查找以“/home/sxiong/rj/x64”开头的文件
-&gt; sxiong@sxiong-X450JF:~$ locate -ir ^/home/sxiong/rj/x64
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#查找以“/home/sxiong/rj/x64”开头的文件</span>
+sxiong@sxiong-X450JF:~<span class="nv">$ </span>locate <span class="nt">-ir</span> ^/home/sxiong/rj/x64
 /home/sxiong/rj/x64
 /home/sxiong/rj/x64/.rgsusfexit
 /home/sxiong/rj/x64/README
@@ -179,8 +180,8 @@ Author: Ray-Eldath
 ...
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#查找以"selinux/makEfile"结尾并忽略大小写的文件
-&gt; sxiong@sxiong-X450JF:~$ locate -ir selinux/makEfile$ 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#查找以"selinux/makEfile"结尾并忽略大小写的文件</span>
+<span class="o">&gt;</span> sxiong@sxiong-X450JF:~<span class="nv">$ </span>locate <span class="nt">-ir</span> selinux/makEfile<span class="nv">$ </span>
 /usr/src/linux-headers-3.2.0-29/scripts/selinux/Makefile
 /usr/src/linux-headers-3.2.0-29/security/selinux/Makefile
 /usr/src/linux-headers-3.2.0-29-generic/scripts/selinux/Makefile
@@ -188,7 +189,7 @@ Author: Ray-Eldath
 
 <p>这个命令比whereis好用之处在于它支持正则匹配查询，可以查找所有与查询字段相关的所有文件，而非二进制文件、说明文件、源代码文件等。</p>
 <h2 id="find">find</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find [PATH] [option] [action]
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="o">[</span>PATH] <span class="o">[</span>option] <span class="o">[</span>action]
 </code></pre></div></div>
 <ul>
   <li>PATH： 所要搜索的目录及其所有子目录。默认为当前目录。</li>
@@ -198,14 +199,14 @@ Author: Ray-Eldath
 
 <p>这个指令功能十分强大，在此仅说明一些常见的用法。</p>
 <h4 id="-name-按照文件名查找文件">-name 按照文件名查找文件</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#在当前文件夹下查找所有java后缀文件
-&gt; sxiong@sxiong-X450JF:~$ find . -name "*.java"
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#在当前文件夹下查找所有java后缀文件</span>
+<span class="o">&gt;</span> sxiong@sxiong-X450JF:~<span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s2">"*.java"</span>
 </code></pre></div></div>
 <h4 id="-type-按照文件类型查找文件">-type 按照文件类型查找文件</h4>
 <p>类型主要有:一般正规档案 (f),装置档案 (b, c), 目录 (d), 链接 (l), socket (s),及 FIFO (p) 等属性。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#查找rj目录下的目录文件
-&gt;sxiong@sxiong-X450JF:~$ find rj/ -type d
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#查找rj目录下的目录文件</span>
+<span class="o">&gt;</span>sxiong@sxiong-X450JF:~<span class="nv">$ </span>find rj/ <span class="nt">-type</span> d
 rj/
 rj/x86
 rj/x86/lib
@@ -215,8 +216,8 @@ rj/x64/log
 </code></pre></div></div>
 
 <h4 id="-size-按照文件大小查找文件">-size 按照文件大小查找文件</h4>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#查找rj目录下大于1MB的文件
-&gt;sxiong@sxiong-X450JF:~$ find rj/ -size +1M
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#查找rj目录下大于1MB的文件</span>
+<span class="o">&gt;</span>sxiong@sxiong-X450JF:~<span class="nv">$ </span>find rj/ <span class="nt">-size</span> +1M
 rj/x86/rjsupplicant
 rj/x86/lib/libcrypto.so.6
 rj/x64/rjsupplicant

@@ -146,17 +146,15 @@ Author: Ray-Eldath
 <h3 id="cubic测试实现过程">cubic测试实现过程</h3>
 <ol>
   <li>设置拥塞控制算法为cubic，在客户端与服务端均运行如下命令：<code class="highlighter-rouge">sudo sysctl -w net.ipv4.tcp_congestion_control=cubic</code></li>
-  <li>
-    <p>编写发送数据包的脚(run.sh)，如下所示:</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="c">#!/bin/bash</span>
-     <span class="nv">i</span><span class="o">=</span>0
-     <span class="k">while</span> <span class="o">[</span> <span class="nv">$i</span> <span class="nt">-le</span> <span class="nv">$1</span> <span class="o">]</span>
-     <span class="k">do
-     </span><span class="nb">echo</span> <span class="s2">"ping:</span><span class="nv">$i</span><span class="s2">"</span>
-     ping <span class="nt">-c</span> 10 <span class="nt">-s</span> 20000 192.168.140.129 &amp;
-     <span class="nv">i</span><span class="o">=</span><span class="k">$((</span><span class="nv">$i</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
-     <span class="k">done</span>
+  <li>编写发送数据包的脚(run.sh)，如下所示:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">i</span><span class="o">=</span>0
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$i</span> <span class="nt">-le</span> <span class="nv">$1</span> <span class="o">]</span>
+<span class="k">do
+</span><span class="nb">echo</span> <span class="s2">"ping:</span><span class="nv">$i</span><span class="s2">"</span>
+ping <span class="nt">-c</span> 10 <span class="nt">-s</span> 20000 192.168.140.129 &amp;
+<span class="nv">i</span><span class="o">=</span><span class="k">$((</span><span class="nv">$i</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
+<span class="k">done</span>
 </code></pre></div>    </div>
   </li>
   <li>测试<strong>无拥塞</strong>情况的吞吐率与RTT

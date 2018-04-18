@@ -20,15 +20,16 @@ date: 2015-10-26
 ### cubic测试实现过程
 1. 设置拥塞控制算法为cubic，在客户端与服务端均运行如下命令：`sudo sysctl -w net.ipv4.tcp_congestion_control=cubic`
 2. 编写发送数据包的脚(run.sh)，如下所示:
-
-			#!/bin/bash
-			i=0
-			while [ $i -le $1 ]
-			do
-			echo "ping:$i"
-			ping -c 10 -s 20000 192.168.140.129 &
-			i=$(($i+1))
-			done
+```bash
+#!/bin/bash
+i=0
+while [ $i -le $1 ]
+do
+echo "ping:$i"
+ping -c 10 -s 20000 192.168.140.129 &
+i=$(($i+1))
+done
+```
 3. 测试**无拥塞**情况的吞吐率与RTT
 	- 查看服务端局域网地址:`ifconfig`;得到其ip为192.168.140.129
 	- 服务端开启iperf监听:`iperf -s`

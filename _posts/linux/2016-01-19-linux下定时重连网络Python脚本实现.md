@@ -17,14 +17,14 @@ date: 2016-01-19
 
 ### 检查网络状态
 
-- ping -c 3 wwww.baidu.com | grep "3 received" | wc -l
+- `ping -c 3 wwww.baidu.com | grep "3 received" | wc -l`
 - 即向一个稳定的服务器发送ping请求，如果返回结果确认收到3个ping包返回信息，则证明网络正常
 - 上述命令，在网络正常时，返回'1'；网络断开时，返回'0'
 
 ### python脚本编写
 
 - check-network-periodically.py
-
+```python
 		#! /usr/bin/python
 		import os,sys
 		import schedule
@@ -53,27 +53,27 @@ date: 2016-01-19
 			schedule.run_pending()
 			time.sleep(1)
 			print 'is checking...'
-	
+```
 ### 重启网络脚本
 - start-network.sh
-
-		#主要是对锐捷启动脚本进行了参数封装，且通过setsid设置为后台运行
-		setsid sh /home/lei/rj/rjsupplicant.sh -d 1 -n em1 -u 用户名 -p 密码 -S 1
-
+```bash
+#主要是对锐捷启动脚本进行了参数封装，且通过setsid设置为后台运行
+setsid sh /home/lei/rj/rjsupplicant.sh -d 1 -n em1 -u 用户名 -p 密码 -S 1
+```
 ### 调用
 - 本来应该将check-network-periodically.py设置为开机自启动，但考虑到服务器长期处于运行状态，并没有关机，设置自启动必要性不大，直接在现阶段基础上运行该脚本即可
 - setsid python check-network-periodically.py
 
 ### ssh连接设置
 - 在自己的个人电脑ubuntu上连接实验室服务器时，经常性的输入ip、用户名信息，这样太麻烦，于是采用一种便于维护的方式，即将这些连接信息保存在`~/.ssh/config`文件中，设置规则如下
-
-		#服务器别名
-		Host dell
-		#账号用户名
-		User lei
-		#服务器ip地址
-		Hostname 192.168.0.112
-
+```bash
+#服务器别名
+Host dell
+#账号用户名
+User lei
+#服务器ip地址
+Hostname 192.168.0.112
+```
 
 - 改进：原来需要使用`ssh lei@192.168.0.112`,现在只需要`ssh dell`即可
 

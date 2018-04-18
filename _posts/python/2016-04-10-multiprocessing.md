@@ -3,7 +3,7 @@ layout: post
 title: python之多进程与多线程
 categories: [python,linux]
 description: 多进程、多线程、python、内存共享
-tags: PYTHON
+tags: python
 date: 2016-04-10
 ---
 ### 多进程

@@ -132,7 +132,7 @@ Author: Ray-Eldath
     
 
     <article class="markdown-body">
-      <h3 id="1安装centos65系统">1.安装Centos6.5系统</h3>
+      <h3 id="安装centos65系统">安装Centos6.5系统</h3>
 <ul>
   <li>连接网络，将锐捷文件夹<code class="highlighter-rouge">rj</code>拷贝到用户目录下
     <blockquote>
@@ -148,7 +148,7 @@ Author: Ray-Eldath
 
 <p>紧接着找到<code class="highlighter-rouge">root ALL=(ALL) ALL</code>这一行，在下一行添加<code class="highlighter-rouge">lei ALL=(ALL) ALL</code>，保存退出编辑，<code class="highlighter-rouge">：wq</code>即可</p>
 
-<h3 id="2基本依赖库的安装">2.基本依赖库的安装</h3>
+<h3 id="基本依赖库的安装">基本依赖库的安装</h3>
 <ul>
   <li>基本开发工具
     <blockquote>
@@ -165,178 +165,153 @@ Author: Ray-Eldath
       <p>sudo yum -y install protobuf-devel leveldb-devel snappy-devel hdf5-devel</p>
     </blockquote>
   </li>
-  <li>
-    <p>安装boost-devel</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  #查看bosst是否已经安装
-  rpm -qa boost
-  #下载boost安装包
-  wget -c -O boost_1_55_0.tar.bz2 http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.bz2?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fboost%2Ffiles%2Fboost%2F1.55.0%2F&amp;ts=1385953406&amp;use_mirror=softlayer-ams
-  #解压文件
-  tar jxvf  boost_1_55_0.tar.bz2
-  #安装
-  cd boost_1_55_0
-  ./bootstrap.sh
-  ./b2 -j 32
-  sudo ./b2 install
+  <li>安装boost-devel
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#查看bosst是否已经安装</span>
+rpm <span class="nt">-qa</span> boost
+<span class="c">#下载boost安装包</span>
+wget <span class="nt">-c</span> <span class="nt">-O</span> boost_1_55_0.tar.bz2 http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.bz2?r<span class="o">=</span>http%3A%2F%2Fsourceforge.net%2Fprojects%2Fboost%2Ffiles%2Fboost%2F1.55.0%2F&amp;ts<span class="o">=</span>1385953406&amp;use_mirror<span class="o">=</span>softlayer-ams
+<span class="c">#解压文件</span>
+<span class="nb">tar </span>jxvf  boost_1_55_0.tar.bz2
+<span class="c">#安装</span>
+<span class="nb">cd </span>boost_1_55_0
+./bootstrap.sh
+./b2 <span class="nt">-j</span> 32
+<span class="nb">sudo</span> ./b2 <span class="nb">install</span>
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>安装opencv-devel</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  #安装依赖项
-  sudo yum -y install cmake pkgconfig gtk2-devel python-devel numpy tbb-devel libpng-devel
-  #下载安装包
-  wget -c http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.10/opencv-2.4.10.zip
-  #解压文件
+  <li>安装opencv-devel
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c">#安装依赖项</span>
+  <span class="nb">sudo </span>yum <span class="nt">-y</span> <span class="nb">install </span>cmake pkgconfig gtk2-devel python-devel numpy tbb-devel libpng-devel
+  <span class="c">#下载安装包</span>
+  wget <span class="nt">-c</span> http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.10/opencv-2.4.10.zip
+  <span class="c">#解压文件</span>
   unzip opencv-2.4.10.zip
-  #安装
-  cd opencv-2.4.10
-  mkdir build
-  cd build
-  cmake ../ -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_EXAMPLES=ON -DBUILD_NEW_PYTHON_SUPPORT=ON -DINSTALL_PYTHON_EXAMPLES=ON
-  make -j 32 #32代指CPU的核数
-  sudo make install
+  <span class="c">#安装</span>
+  <span class="nb">cd </span>opencv-2.4.10
+  <span class="nb">mkdir </span>build
+  <span class="nb">cd </span>build
+  cmake ../ <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE <span class="nt">-DCMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local <span class="nt">-DBUILD_EXAMPLES</span><span class="o">=</span>ON <span class="nt">-DBUILD_NEW_PYTHON_SUPPORT</span><span class="o">=</span>ON <span class="nt">-DINSTALL_PYTHON_EXAMPLES</span><span class="o">=</span>ON
+  make <span class="nt">-j</span> 32 <span class="c">#32代指CPU的核数</span>
+  <span class="nb">sudo </span>make <span class="nb">install</span>
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>安装系统依赖库</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  sudo yum -y install gflags-devel lmdb-devel
+  <li>安装系统依赖库
+    <blockquote>
+      <p>sudo yum -y install gflags-devel lmdb-devel</p>
+    </blockquote>
+  </li>
+  <li>安装glog-devel
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-c</span> <span class="nt">-O</span> glog.zip https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+<span class="nb">tar </span>zxvf glog.zip
+<span class="nb">cd </span>glog
+./configure
+make <span class="nt">-j</span> 32
+<span class="nb">sudo </span>make <span class="nb">install</span>
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>安装glog-devel</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  wget -c -O glog.zip https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
-  tar zxvf glog.zip
-  cd glog
-  ./configure
-  make -j 32
-  sudo make install
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>安装BLAS</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  yum install atlas-devel
-</code></pre></div>    </div>
+  <li>安装BLAS
+    <blockquote>
+      <p>yum install atlas-devel</p>
+    </blockquote>
   </li>
 </ul>
 
-<h3 id="3安装caffe">3.安装caffe</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	wget -c -O caffe.zip https://github.com/BVLC/caffe/archive/master.zip
-	$ cp Makefile.config.example Makefile.config
-	# Adjust Makefile.config (for example, if using Anaconda Python)
-	$ make all -j 32
-	$ make test
-	$ make runtest - makeall 出现如下错误 &gt; fatal error: caffe/proto/caffe.pb.h: No such file or directory 
+<h3 id="安装caffe">安装caffe</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-c</span> <span class="nt">-O</span> caffe.zip https://github.com/BVLC/caffe/archive/master.zip
+<span class="nv">$ </span><span class="nb">cp </span>Makefile.config.example Makefile.config
+<span class="c"># Adjust Makefile.config (for example, if using Anaconda Python)</span>
+<span class="nv">$ </span>make all <span class="nt">-j</span> 32
+<span class="nv">$ </span>make <span class="nb">test</span>
+<span class="nv">$ </span>make runtest
 </code></pre></div></div>
-
-<p>解决参考链接 <a href="https://github.com/muupan/dqn-in-the-caffe/issues/3">https://github.com/muupan/dqn-in-the-caffe/issues/3</a></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	#根据错误日志，应该是caffe.pb.h没有在make的过程中通过protoc编译生成，因此可以手动编译即可
-	protoc src/caffe/proto/caffe.proto --cpp_out=. - make runtest 出现如下错误
-</code></pre></div></div>
-
-<blockquote>
-  <p>.build_release/tools/caffe: error while loading shared libraries: libglog.so.0: cannot open shared object file: No such file or directory</p>
-
-  <p>解决方法参考链接:<a href="http://blog.chinaunix.net/uid-26212859-id-3256667.html" title="参考链接">http://blog.chinaunix.net/uid-26212859-id-3256667.html</a></p>
-</blockquote>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	#1、找到libglog的位置，因为手动源码安装，故一般在/usr/local/lib中
-	#2、添加共享库搜寻路径
-	cat /etc/ld.so.conf
-	include ld.so.conf.d/*.conf
-	echo "/usr/local/lib" &gt;&gt; /etc/ld.so.conf
-	ldconfig
-</code></pre></div></div>
-
 <ul>
-  <li>
-    <p>make runtest 出现protobuf相关错误</p>
+  <li>make all 出现如下错误
+    <blockquote>
+      <p>fatal error: caffe/proto/caffe.pb.h: No such file or directory 
+解决参考链接 <a href="https://github.com/muupan/dqn-in-the-caffe/issues/3">https://github.com/muupan/dqn-in-the-caffe/issues/3</a></p>
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#根据错误日志，应该是caffe.pb.h没有在make的过程中通过protoc编译生成，因此可以手动编译即可</span>
+protoc src/caffe/proto/caffe.proto <span class="nt">--cpp_out</span><span class="o">=</span><span class="nb">.</span>
+</code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li>make runtest 出现如下错误
+    <blockquote>
+      <p>.build_release/tools/caffe: error while loading shared libraries: libglog.so.0: cannot open shared object file: No such file or directory</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  #1、查看protobuf的当前版本
-  rpm -qa protobuf
-  #2、卸载protobuf
-  yum -y remove protobuf
-  #3、下载protobuf
-  wget -c -O protobuf.zip https://github.com/google/protobuf/archive/master.zip
-  #4、安装protobuf
-  unzip protobuf.zip
-  cd protobuf-master
-  ./autogen.sh
-  ./configure
-  make -j 32 &amp;&amp; make check
-  sudo make install
+      <p>解决方法参考链接:<a href="http://blog.chinaunix.net/uid-26212859-id-3256667.html" title="参考链接">http://blog.chinaunix.net/uid-26212859-id-3256667.html</a></p>
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#1、找到libglog的位置，因为手动源码安装，故一般在/usr/local/lib中</span>
+<span class="c">#2、添加共享库搜寻路径</span>
+<span class="nb">cat</span> /etc/ld.so.conf
+include ld.so.conf.d/<span class="k">*</span>.conf
+<span class="nb">echo</span> <span class="s2">"/usr/local/lib"</span> <span class="o">&gt;&gt;</span> /etc/ld.so.conf
+ldconfig
+</code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li>make runtest 出现protobuf相关错误
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#1、查看protobuf的当前版本</span>
+rpm <span class="nt">-qa</span> protobuf
+<span class="c">#2、卸载protobuf</span>
+yum <span class="nt">-y</span> remove protobuf
+<span class="c">#3、下载protobuf</span>
+wget <span class="nt">-c</span> <span class="nt">-O</span> protobuf.zip https://github.com/google/protobuf/archive/master.zip
+<span class="c">#4、安装protobuf</span>
+unzip protobuf.zip
+<span class="nb">cd </span>protobuf-master
+./autogen.sh
+./configure
+make <span class="nt">-j</span> 32 <span class="o">&amp;&amp;</span> make check
+<span class="nb">sudo </span>make <span class="nb">install</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="4安装显卡驱动配置caffe-gpu模式">4.安装显卡驱动，配置CAFFE GPU模式</h3>
+<h3 id="安装显卡驱动配置caffe-gpu模式">安装显卡驱动，配置CAFFE GPU模式</h3>
+
 <ol>
   <li>下载驱动，网址为 <a href="http://www.nvidia.cn/Download/index.aspx?lang=cn">http://www.nvidia.cn/Download/index.aspx?lang=cn</a></li>
   <li>安装内核源码，以提供驱动编译&lt;/br&gt;
 上此网址<a href="http://www.rpmfind.net/linux/rpm2html/search.php?">http://www.rpmfind.net/linux/rpm2html/search.php?</a>下载centos6.5对应的内核源码，kernel-devel-2.6.32-431.29.2.el6.x86_64.rpm、kernel-headers-2.6.32-431.29.2.el6.x86_64.rpm</li>
   <li><code class="highlighter-rouge">yum -y install kernel-devel-2.6.32-431.29.2.el6.x86_64.rpm kernel-headers-2.6.32-431.29.2.el6.x86_64.rpm</code></li>
-  <li>
-    <p>修改/etc/modprobe.d/blacklist.conf 文件，以阻止 nouveau 模块的加载</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 方法： 在文件末尾添加blacklist nouveau
+  <li>修改/etc/modprobe.d/blacklist.conf 文件，以阻止 nouveau 模块的加载
+方法： 在文件末尾添加blacklist nouveau</li>
+  <li>重新建立initramfs image文件，该文件主要功能为维护系统内核，提供系统内核加载的位置信息等
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> /boot/initramfs-<span class="k">$(</span><span class="nb">uname</span> <span class="nt">-r</span><span class="k">)</span>.img /boot/initramfs-<span class="k">$(</span><span class="nb">uname</span> <span class="nt">-r</span><span class="k">)</span>.img.bak
+dracut /boot/initramfs-<span class="k">$(</span><span class="nb">uname</span> <span class="nt">-r</span><span class="k">)</span>.img <span class="k">$(</span><span class="nb">uname</span> <span class="nt">-r</span><span class="k">)</span>
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>重新建立initramfs image文件，该文件主要功能为维护系统内核，提供系统内核加载的位置信息等</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).img.bak
- dracut /boot/initramfs-$(uname -r).img $(uname -r)
+  <li>修改/etc/inittab，使系统开机进入init 3文本模式:
+将最后一行“id:5:initdefault:”修改成“id:3:initdefault:”
+说明：5代表系统启动时默认进入x-window图形界面，3代表默认进入终端模式。</li>
+  <li>阻止kernel加载nouveau模块
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /boot/grub/grub.conf
+<span class="c">#在当前内核版本选项的kernel行的末尾加上 rdblacklist=nouveau vga=792</span>
+<span class="c">#重启 </span>
+reboot
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>修改/etc/inittab，使系统开机进入init 3文本模式:</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 将最后一行“id:5:initdefault:”修改成“id:3:initdefault:”
- 说明：5代表系统启动时默认进入x-window图形界面，3代表默认进入终端模式。
+  <li>​安装NVIDIA驱动
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.输入root和password，进入根用户模式下,确保nouveau kernel driver没有被加载
+<span class="c"># lsmod | grep nouveau</span>
+2.进入驱动程序所在目录,开始安装
+<span class="c"># sudo chmod +x NVIDIA-Linux-x86-331.20.run</span>
+<span class="c"># sudo ./NVIDIA-Linux-x86-331.20.run</span>
+3.安装过程中，根据提示选择accept，yes 或 OK，即可完成安装：
+  如果提示有旧驱动，询问是否删除旧驱动，选Yes；
+  如果提示缺少某某模块（modules），询问是否上网下载，选no；
+  如果提示编译模块，询问是否进行编译，选ok；
+  如果提示将要修改xorg.conf，询问是否允许，选Yes；
+  接下来就是等待安装完成。
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>阻止kernel加载nouveau模块</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo vim /boot/grub/grub.conf
- 在当前内核版本选项的kernel行的末尾加上 rdblacklist=nouveau vga=792
- 重启 reboot
+  <li>修改/etc/inittab，使系统开机进入init 5图形界面模式
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>将最后一行“id:3:initdefault:”修改成“id:5:initdefault:”
+重启
+<span class="c">#reboot</span>
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>​安装NVIDIA驱动</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1.输入root和password，进入根用户模式下,确保nouveau kernel driver没有被加载
- # lsmod | grep nouveau
- 2.进入驱动程序所在目录,开始安装
- # sudo chmod +x NVIDIA-Linux-x86-331.20.run
- # sudo ./NVIDIA-Linux-x86-331.20.run
- 3.安装过程中，根据提示选择accept，yes 或 OK，即可完成安装：
-      如果提示有旧驱动，询问是否删除旧驱动，选Yes；
-      如果提示缺少某某模块（modules），询问是否上网下载，选no；
-      如果提示编译模块，询问是否进行编译，选ok；
-      如果提示将要修改xorg.conf，询问是否允许，选Yes；
-      接下来就是等待安装完成。
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>修改/etc/inittab，使系统开机进入init 5图形界面模式</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 将最后一行“id:3:initdefault:”修改成“id:5:initdefault:”
- 重启
- #reboot
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>检查nvidia驱动是否安装成功</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.对于一般的普通显卡，geforce系列等
+  <li>检查nvidia驱动是否安装成功
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.对于一般的普通显卡，geforce系列等
 登陆后，在系统- 首选项里可以看到NVIDIA X Server Settings菜单，即可证明安装成功
 2.对于Tesla系列等高端计算卡
 可以通过命令nvidia-smi来查看GPU的配置运行情况
@@ -344,27 +319,22 @@ Author: Ray-Eldath
   </li>
 </ol>
 
-<h3 id="5安装cuda">5.安装cuda</h3>
+<h3 id="安装cuda">安装cuda</h3>
 <ol>
-  <li>
-    <p>下载<a href="http://developer.download.nvidia.com/compute/cuda/6_5/rel/installers/cuda_6.5.14_linux_64.run">CUDA 6.5</a>的RUN文件</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ chmod +x cuda_6.5_XXXX.run
- $ ./cuda_6.5_XXXX.run 跳过第一项的驱动安装，后面要么yes要么默认就可以了。
+  <li>下载<a href="http://developer.download.nvidia.com/compute/cuda/6_5/rel/installers/cuda_6.5.14_linux_64.run">CUDA 6.5</a>的RUN文件
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">chmod</span> +x cuda_6.5_XXXX.run
+<span class="nv">$ </span>./cuda_6.5_XXXX.run
+</code></pre></div>    </div>
+    <p>跳过第一项的驱动安装，后面要么yes要么默认就可以了。</p>
+  </li>
+  <li>环境变量配置
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/cuda/bin加入PATH
+/usr/local/cuda/lib64加入/etc/ld.so.conf
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>环境变量配置</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> /usr/local/cuda/bin加入PATH
- /usr/local/cuda/lib64加入/etc/ld.so.conf
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>重新编译安装caffe</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 回到安装caffe的流程上
- 注释 CPU_ONLY := 1，make clean,make all -j 32,make install
+  <li>重新编译安装caffe
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>回到安装caffe的流程上
+注释 CPU_ONLY :<span class="o">=</span> 1，make clean,make all <span class="nt">-j</span> 32,make <span class="nb">install</span>
 </code></pre></div>    </div>
   </li>
 </ol>

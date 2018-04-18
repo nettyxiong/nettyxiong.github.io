@@ -152,25 +152,24 @@ Author: Ray-Eldath
 空间复杂度：由反转操作决定</p>
 
 <h5 id="思路三java代码实现">思路三java代码实现</h5>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import junit.framework.TestCase;
-
-
-public class MainTest extends TestCase {
-  //旋转向量函数实现
-  public static String rotate(String source,int i){
-    int n = source.length();
-    StringBuilder head = new StringBuilder(source.substring(0, i)).reverse();
-    StringBuilder end = new StringBuilder(source.substring(i, n)).reverse();
-    return new StringBuilder(head.append(end)).reverse().toString();
-  }
-  
-  public void test(){
-    String example = "abcdefgh";
-    assertEquals("defghabc", rotate(example, 3));
-  }
-}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kn">import</span> <span class="nn">junit.framework.TestCase</span><span class="o">;</span>
+	
+	
+	<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainTest</span> <span class="kd">extends</span> <span class="n">TestCase</span> <span class="o">{</span>
+	  <span class="c1">//旋转向量函数实现</span>
+	  <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">rotate</span><span class="o">(</span><span class="n">String</span> <span class="n">source</span><span class="o">,</span><span class="kt">int</span> <span class="n">i</span><span class="o">){</span>
+	    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+	    <span class="n">StringBuilder</span> <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">)).</span><span class="na">reverse</span><span class="o">();</span>
+	    <span class="n">StringBuilder</span> <span class="n">end</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">n</span><span class="o">)).</span><span class="na">reverse</span><span class="o">();</span>
+	    <span class="k">return</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">end</span><span class="o">)).</span><span class="na">reverse</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+	  <span class="o">}</span>
+	  
+	  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(){</span>
+	    <span class="n">String</span> <span class="n">example</span> <span class="o">=</span> <span class="s">"abcdefgh"</span><span class="o">;</span>
+	    <span class="n">assertEquals</span><span class="o">(</span><span class="s">"defghabc"</span><span class="o">,</span> <span class="n">rotate</span><span class="o">(</span><span class="n">example</span><span class="o">,</span> <span class="mi">3</span><span class="o">));</span>
+	  <span class="o">}</span>
+	<span class="o">}</span>
 </code></pre></div></div>
-
 <p>上述代码中借助了java库中自带的reverse反转函数,性能可能比较差，并且额外消耗了大小为2*n的空间，最好的做法是直接在源source字符串上进行3次反转操作，可以省去额外空间的消耗。</p>
 
 <h3 id="结论">结论</h3>

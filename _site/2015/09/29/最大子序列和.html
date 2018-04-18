@@ -138,113 +138,114 @@ Author: Ray-Eldath
 <h3 id="思路一">思路一</h3>
 <p>将整个序列的所有子序列遍历一遍，求这些所有子序列中的最大值。
 java代码如下：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  public static int maxSubSum1(int data[]) {
-    int maxSum = 0;
-    for (int i = 0; i &lt; data.length; i++)
-      for (int j = i; j &lt; data.length; j++) {
-        int tempSum = 0;
-        for (int k = i; k &lt;= j; k++) {
-          tempSum += data[k];
-        }
-        if (tempSum &gt; maxSum) {
-          maxSum = tempSum;
-        }
-      }
-    return maxSum;
-  } 时间复杂度：O(n^3)&lt;/br&gt; 空间复杂度：O(1)
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">maxSubSum1</span><span class="o">(</span><span class="kt">int</span> <span class="n">data</span><span class="o">[])</span> <span class="o">{</span>
+	    <span class="kt">int</span> <span class="n">maxSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+	      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+	        <span class="kt">int</span> <span class="n">tempSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
+	          <span class="n">tempSum</span> <span class="o">+=</span> <span class="n">data</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+	        <span class="o">}</span>
+	        <span class="k">if</span> <span class="o">(</span><span class="n">tempSum</span> <span class="o">&gt;</span> <span class="n">maxSum</span><span class="o">)</span> <span class="o">{</span>
+	          <span class="n">maxSum</span> <span class="o">=</span> <span class="n">tempSum</span><span class="o">;</span>
+	        <span class="o">}</span>
+	      <span class="o">}</span>
+	    <span class="k">return</span> <span class="n">maxSum</span><span class="o">;</span>
+	  <span class="o">}</span>
 </code></pre></div></div>
+<p>时间复杂度：O(n^3)&lt;/br&gt;
+空间复杂度：O(1)</p>
 
 <h3 id="思路二">思路二</h3>
 <p>对思路一尽行优化，即在遍历所有子序列时向后遍历，即可省去第3层循环
 java代码如下：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  public static int maxSubSum2(int data[]) {
-    int maxSum = 0;
-    for (int i = 0; i &lt; data.length; i++) {
-      int tempSum = 0;
-      for (int j = i; j &lt; data.length; j++) {
-        tempSum += data[j];
-        if (tempSum &gt; maxSum) {
-          maxSum = tempSum;
-        }
-      }
-    }
-    return maxSum;
-  } 时间复杂度：O(n^2)&lt;/br&gt; 空间复杂度：O(1)
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">maxSubSum2</span><span class="o">(</span><span class="kt">int</span> <span class="n">data</span><span class="o">[])</span> <span class="o">{</span>
+	    <span class="kt">int</span> <span class="n">maxSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+	      <span class="kt">int</span> <span class="n">tempSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+	        <span class="n">tempSum</span> <span class="o">+=</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+	        <span class="k">if</span> <span class="o">(</span><span class="n">tempSum</span> <span class="o">&gt;</span> <span class="n">maxSum</span><span class="o">)</span> <span class="o">{</span>
+	          <span class="n">maxSum</span> <span class="o">=</span> <span class="n">tempSum</span><span class="o">;</span>
+	        <span class="o">}</span>
+	      <span class="o">}</span>
+	    <span class="o">}</span>
+	    <span class="k">return</span> <span class="n">maxSum</span><span class="o">;</span>
+	  <span class="o">}</span>
 </code></pre></div></div>
+<p>时间复杂度：O(n^2)&lt;/br&gt;
+空间复杂度：O(1)</p>
 
 <h3 id="思路三">思路三</h3>
 <p>使用二分分治的思想，即将整个序列分为前后两部分，那么该最大子序列可能出现在前半部分，也可能出现在后半部分，也有可能同时包含了两个部分（此情况下必定包含前半部分的最后一个元素，也必定包含后半部分的第一个元素），按照此思路我们可以设计一个递归函数，一直二分下去，在上述3种情况下求最大值即为最大子序列和。&lt;/br&gt;</p>
 
 <p>java代码如下：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">maxSumRec</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+	    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+	      <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">head</span><span class="o">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+	        <span class="k">return</span> <span class="n">data</span><span class="o">[</span><span class="n">head</span><span class="o">];</span>
+	      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+	        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+	      <span class="o">}</span>
+	    <span class="o">}</span>
+	
+	    <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="o">(</span><span class="n">head</span> <span class="o">+</span> <span class="n">end</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+	    <span class="kt">int</span> <span class="n">maxHeadSum</span> <span class="o">=</span> <span class="n">maxSumRec</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">head</span><span class="o">,</span> <span class="n">middle</span><span class="o">);</span>
+	    <span class="kt">int</span> <span class="n">maxEndSum</span> <span class="o">=</span> <span class="n">maxSumRec</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+	
+	    <span class="kt">int</span> <span class="n">maxHeadBorderSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	    <span class="kt">int</span> <span class="n">tempHeadBorderSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">middle</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">head</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+	      <span class="n">tempHeadBorderSum</span> <span class="o">+=</span> <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+	      <span class="k">if</span> <span class="o">(</span><span class="n">tempHeadBorderSum</span> <span class="o">&gt;</span> <span class="n">maxHeadBorderSum</span><span class="o">)</span> <span class="o">{</span>
+	        <span class="n">maxHeadBorderSum</span> <span class="o">=</span> <span class="n">tempHeadBorderSum</span><span class="o">;</span>
+	      <span class="o">}</span>
+	    <span class="o">}</span>
+	
+	    <span class="kt">int</span> <span class="n">maxEndBorderSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	    <span class="kt">int</span> <span class="n">tempEndBorderSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+	      <span class="n">tempEndBorderSum</span> <span class="o">+=</span> <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+	      <span class="k">if</span> <span class="o">(</span><span class="n">tempEndBorderSum</span> <span class="o">&gt;</span> <span class="n">maxEndBorderSum</span><span class="o">)</span> <span class="o">{</span>
+	        <span class="n">maxEndBorderSum</span> <span class="o">=</span> <span class="n">tempEndBorderSum</span><span class="o">;</span>
+	      <span class="o">}</span>
+	    <span class="o">}</span>
+	
+	    <span class="kt">int</span> <span class="n">maxBorderSum</span> <span class="o">=</span> <span class="n">maxHeadBorderSum</span> <span class="o">+</span> <span class="n">maxEndBorderSum</span><span class="o">;</span>
+	    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	    <span class="k">return</span> <span class="o">(</span><span class="n">temp</span> <span class="o">=</span> <span class="o">(</span><span class="n">maxEndSum</span> <span class="o">&gt;</span> <span class="n">maxHeadSum</span> <span class="o">?</span> <span class="n">maxEndSum</span> <span class="o">:</span> <span class="n">maxHeadSum</span><span class="o">))</span> <span class="o">&gt;</span> <span class="n">maxBorderSum</span> <span class="o">?</span> <span class="n">temp</span>
+	        <span class="o">:</span> <span class="n">maxBorderSum</span><span class="o">;</span>
+	  <span class="o">}</span>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  private static int maxSumRec(int[] data, int head, int end) {
-    if (head == end) {
-      if (data[head] &gt; 0) {
-        return data[head];
-      } else {
-        return 0;
-      }
-    }
-
-    int middle = (head + end) / 2;
-    int maxHeadSum = maxSumRec(data, head, middle);
-    int maxEndSum = maxSumRec(data, middle + 1, end);
-
-    int maxHeadBorderSum = 0;
-    int tempHeadBorderSum = 0;
-    for (int i = middle; i &gt;= head; i--) {
-      tempHeadBorderSum += data[i];
-      if (tempHeadBorderSum &gt; maxHeadBorderSum) {
-        maxHeadBorderSum = tempHeadBorderSum;
-      }
-    }
-
-    int maxEndBorderSum = 0;
-    int tempEndBorderSum = 0;
-    for (int i = middle + 1; i &lt;= end; i++) {
-      tempEndBorderSum += data[i];
-      if (tempEndBorderSum &gt; maxEndBorderSum) {
-        maxEndBorderSum = tempEndBorderSum;
-      }
-    }
-
-    int maxBorderSum = maxHeadBorderSum + maxEndBorderSum;
-    int temp = 0;
-    return (temp = (maxEndSum &gt; maxHeadSum ? maxEndSum : maxHeadSum)) &gt; maxBorderSum ? temp
-        : maxBorderSum;
-  }
-
-  public static int maxSubSum3(int data[]) {
-	return maxSumRec(data, 0, data.length - 1);
-  	  }
+	  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">maxSubSum3</span><span class="o">(</span><span class="kt">int</span> <span class="n">data</span><span class="o">[])</span> <span class="o">{</span>
+    	<span class="k">return</span> <span class="nf">maxSumRec</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+  	  <span class="o">}</span>
 </code></pre></div></div>
-
 <p>时间复杂度：O(nlogn)&lt;/br&gt;
 空间复杂度：O(1)</p>
 
 <h3 id="思路四">思路四</h3>
 <p>最为精巧的算法实现，即当一个从头开始遍历的子序列和为负数时，忽略掉这个子序列中的所有元素，再从剩下的元素中去求最大序列和。
 java代码如下：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  public static int maxSubSum4(int data[]) {
-    int maxSum = 0;
-    int tempSum = 0;
-
-    for (int i = 0; i &lt; data.length; i++) {
-      tempSum += data[i];
-      if (tempSum &lt; 0) {
-        tempSum = 0;
-      }
-      if (tempSum &gt; maxSum) {
-        maxSum = tempSum;
-      }
-    }
-
-    return maxSum;
-  } 时间复杂度：O(n)&lt;/br&gt; 空间复杂度：O(1)
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">maxSubSum4</span><span class="o">(</span><span class="kt">int</span> <span class="n">data</span><span class="o">[])</span> <span class="o">{</span>
+	    <span class="kt">int</span> <span class="n">maxSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	    <span class="kt">int</span> <span class="n">tempSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	
+	    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+	      <span class="n">tempSum</span> <span class="o">+=</span> <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+	      <span class="k">if</span> <span class="o">(</span><span class="n">tempSum</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+	        <span class="n">tempSum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	      <span class="o">}</span>
+	      <span class="k">if</span> <span class="o">(</span><span class="n">tempSum</span> <span class="o">&gt;</span> <span class="n">maxSum</span><span class="o">)</span> <span class="o">{</span>
+	        <span class="n">maxSum</span> <span class="o">=</span> <span class="n">tempSum</span><span class="o">;</span>
+	      <span class="o">}</span>
+	    <span class="o">}</span>
+	
+	    <span class="k">return</span> <span class="n">maxSum</span><span class="o">;</span>
+	  <span class="o">}</span>
 </code></pre></div></div>
+<p>时间复杂度：O(n)&lt;/br&gt;
+空间复杂度：O(1)</p>
 
 <h3 id="结论">结论</h3>
 <p>在这四个实现中，我们发现了一个问题，即实现起来简单易懂的算法往往效果并不太好，而那些所谓精妙的算法，虽然相对难以理解一些，但往往可以取得非常好的效果。此外，当我们一时想不到这些精妙的算法时，折衷的做法是利用分治的思想，因为这个思想是“万金油”，到哪儿都能较好的解决问题，相对也容易理解一些。</p>
