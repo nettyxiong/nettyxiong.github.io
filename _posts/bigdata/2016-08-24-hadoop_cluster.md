@@ -3,7 +3,7 @@ layout: post
 title: ubuntu14.04下搭建hadoop集群
 categories: [bigdata]
 description: 实现hadoop集群的搭建
-tags: hadoop ubuntu
+tags: hadoop
 date: 2016-08-24
 ---
 

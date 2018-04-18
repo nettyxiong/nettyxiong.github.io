@@ -3,7 +3,7 @@ layout: post
 title: ubuntu14.04下搭建mesos集群
 categories: [bigdata]
 description: 实现mesos集群的搭建
-tags: mesos ubuntu
+tags: mesos
 date: 2016-09-05
 ---
 
