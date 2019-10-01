@@ -11,7 +11,7 @@ date: 2017-07-26
 
 > RPC，全称为Remote Procedure Call，即远程过程调用，它是一个计算机通信协议。它允许像调用本地服务一样调用远程服务。它可以有不同的实现方式。如RMI(远程方法调用)、Hessian、Http invoker等。另外，RPC是与语言无关的。
 
-![RPC示意图](http://sixiong.github.io/images/java/rpc.png)
+![RPC示意图](http://nettyxiong.github.io/images/java/rpc.png)
 
 如上图所示，假设Computer1在调用sayHi()方法，对于Computer1而言调用sayHi()方法就像调用本地方法一样，调用 –>返回。但从后续调用可以看出Computer1调用的是Computer2中的sayHi()方法，RPC屏蔽了底层的实现细节，让调用者无需关注网络通信，数据传输等细节。
 
