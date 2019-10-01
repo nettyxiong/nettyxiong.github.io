@@ -4,7 +4,7 @@ title: CentOS 7.3 使用kubeadm搭建kubernetes集群
 categories: [bigdata]
 description: 实现kubernets集群的搭建
 tags: kubernetes
-dates: 2017-08-03
+dates: 2017-01-03
 ---
 
 ## 集群说明
@@ -55,7 +55,6 @@ host95 = 192.168.0.95
 	sudo yum install -y docker kubelet kubeadm
 	sudo systemctl enable docker && sudo systemctl start docker
 	sudo systemctl enable kubelet && sudo systemctl start kubelet
-
 	//kubelet启动失败时运行这条指令
 	kubeadm reset && systemctl start kubelet
 	```
