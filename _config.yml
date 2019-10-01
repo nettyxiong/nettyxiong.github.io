@@ -32,9 +32,14 @@ search: true
 nightMode: true
 
 # Comments 评论功能
-comment_gitalk_clientId: 0710e2d1a05a4e6851c9
-comment_gitalk_clientSecret: f3bf238ac00991d863d83ed92d4fa290dcdd178e
-comment_gitalk_repo: nettyxiong.github.io
+comments:
+  gitalk: true 
+  gitalk_clientId: 0710e2d1a05a4e6851c9
+  gitalk_clientSecret: f3bf238ac00991d863d83ed92d4fa290dcdd178e
+  gitalk_repo: nettyxiong.github.io
+  gitalk_owner: nettyxiong
+  gitalk_admin: nettyxiong
+  distractionFreeMode: true
 github_username: nettyxiong
 
 # MathJax 公式支持 by Ray-Eldath
