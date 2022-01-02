@@ -9,8 +9,8 @@ date: 2017-08-04
 
 ## 一、准备
 
-> 在[简单版本](http://sxiong.net/java/2017/07/26/simple-rpc.html)的基础上,进行一些优化工作,打造升级版的RPC框架,我们首先通过一个RPC的调用过程来了解RPC的原理
-![RPC示意图](http://sixiong.github.io/images/java/rpcflow.png)
+> 在[简单版本](http://nettyxiong.github.io/java/2017/07/26/simple-rpc.html)的基础上,进行一些优化工作,打造升级版的RPC框架,我们首先通过一个RPC的调用过程来了解RPC的原理
+![RPC示意图](http://nettyxiong.github.io/images/java/rpcflow.png)
 
 
 ## 二、一次RPC框架请求的流程
